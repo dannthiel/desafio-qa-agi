@@ -1,0 +1,22 @@
+# Java / Maven
+**/target/
+*.class
+
+# Allure gerado localmente
+**/allure-report/
+**/allure-results/
+.allure/
+
+# Performance (resultados são gerados por execução)
+performance-tests/results/*
+!performance-tests/results/.gitkeep
+
+# IDEs e sistema operacional
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

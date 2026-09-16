@@ -1,0 +1,55 @@
+name: Testes Web e API
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  api-tests:
+    name: Dog API
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: maven
+      - name: Executar testes de API
+        run: ./mvnw -B -ntp -pl api-tests clean test
+      - name: Publicar resultados Allure da API
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results-api
+          path: api-tests/target/allure-results
+          if-no-files-found: warn
+
+  web-tests:
+    name: Blog do Agi - Chrome
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: maven
+      - name: Executar testes Web em modo headless
+        run: ./mvnw -B -ntp -pl web-tests clean test -Dheadless=true
+      - name: Publicar resultados e screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidencias-web
+          path: |
+            web-tests/target/allure-results
+            web-tests/target/screenshots
+          if-no-files-found: warn

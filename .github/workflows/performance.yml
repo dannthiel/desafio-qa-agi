@@ -1,0 +1,52 @@
+name: Performance JMeter (manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      plan:
+        description: Plano a executar
+        required: true
+        default: load-test
+        type: choice
+        options:
+          - load-test
+          - spike-test
+      profile:
+        description: Perfil de execução
+        required: true
+        default: smoke
+        type: choice
+        options:
+          - smoke
+          - acceptance
+
+permissions:
+  contents: read
+
+jobs:
+  performance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalar JMeter 5.6.3
+        run: |
+          curl -fsSLO https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.6.3.tgz
+          tar -xzf apache-jmeter-5.6.3.tgz
+          echo "$PWD/apache-jmeter-5.6.3/bin" >> "$GITHUB_PATH"
+      - name: Executar smoke
+        if: inputs.profile == 'smoke' && inputs.plan == 'load-test'
+        run: bash performance-tests/scripts/run-performance.sh load-test -Jthreads=1 -JrampUp=1 -Jduration=20 -JtargetRpm=60
+      - name: Executar smoke do plano de pico
+        if: inputs.profile == 'smoke' && inputs.plan == 'spike-test'
+        run: bash performance-tests/scripts/run-performance.sh spike-test -JbaselineThreads=1 -JspikeThreads=2 -JstageDuration=5 -JbaselineRpm=30 -JspikeRpm=60
+      - name: Executar perfil de aceite
+        if: inputs.profile == 'acceptance'
+        run: bash performance-tests/scripts/run-performance.sh "${{ inputs.plan }}"
+      - name: Publicar relatório JMeter
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jmeter-${{ inputs.plan }}-${{ inputs.profile }}
+          path: performance-tests/results
+          if-no-files-found: warn
