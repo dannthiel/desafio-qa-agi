@@ -47,11 +47,23 @@ Não é necessário instalar o Maven: o projeto inclui o Maven Wrapper.
 
 ### Performance
 
-- Apache JMeter 5.6.3 no `PATH`;
+- Apache JMeter 5.6.x no `PATH`;
 - máquina compatível com a quantidade de threads usada;
 - execução previamente autorizada contra o ambiente-alvo.
 
 ## Como executar
+
+### Baixando o projeto em uma máquina local
+
+Clone o repositório e acesse a pasta do projeto:
+
+```bash
+git clone https://github.com/dannthiel/desafio-qa-agi.git
+cd desafio-qa-agi
+```
+
+A execução local foi validada a partir de uma cópia nova do repositório em ambiente Windows. Os testes Web e API foram executados com Java 17 utilizando o Maven Wrapper. O smoke de performance foi validado localmente com Apache JMeter 5.6.2, enquanto o pipeline do GitHub Actions utiliza JMeter 5.6.3.
+
 
 ### Todos os testes Web e API
 
