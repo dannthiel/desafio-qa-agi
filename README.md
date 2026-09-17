@@ -17,7 +17,7 @@ Além da automação, a entrega explicita estratégia, riscos, cenários explora
 - JUnit 5
 - Hamcrest e JSON Schema
 - Allure Report
-- Apache JMeter 5.6.3
+- Apache JMeter 5.6.x
 - GitHub Actions
 
 ## Estrutura
