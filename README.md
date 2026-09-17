@@ -194,6 +194,17 @@ Os testes validam elementos e comportamentos específicos, sem depender de um t�
 | LOAD-001 | Compra sob carga sustentada | ≥ 250 req/s e p90 < 2 s |
 | SPIKE-001 | Linha de base, pico e recuperação | observar degradação e recuperação |
 
+## Resumo dos resultados de execução
+
+| Execução | Resultado |
+|---|---|
+| Web + API em ambiente local | `BUILD SUCCESS` |
+| Web + API no GitHub Actions | `SUCCESS` |
+| Carga sustentada | 247,97 req/s, p90 de 308 ms e 0,107% de erros - critério não atingido integralmente |
+| Teste de pico | 221,95 req/s no pico, p90 de 2.456 ms, 0 erros e recuperação após a redução da carga |
+
+Os resultados completos, incluindo ambiente, métricas, limitações e conclusão, estão disponíveis no [Relatório de performance](docs/relatorio-performance.md) e na [Validação técnica da entrega](docs/validacao-tecnica.md).
+
 ## Documentação de QA
 
 - [Estratégia de testes](docs/estrategia-de-testes.md)
