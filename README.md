@@ -6,8 +6,7 @@ Projeto de qualidade que cobre os três blocos solicitados no desafio:
 - **API:** endpoints públicos da Dog API;
 - **Performance:** compra de passagem no BlazeDemo com carga e pico.
 
-Além da automação, a entrega explicita estratégia, riscos, cenários exploratórios, critérios de aceite, limitações e evidências. A intenção é demonstrar o raciocínio de QA que orientou o código, e não apenas a quantidade de testes.
-
+O projeto também contém instruções para execução dos testes e consulta dos resultados
 ## Tecnologias
 
 - Java 17
