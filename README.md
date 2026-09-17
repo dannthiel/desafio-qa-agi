@@ -161,7 +161,7 @@ Perfil padrão:
 
 Cada execução gera `results.jtl`, `jmeter.log` e relatório HTML em uma pasta com data/hora dentro de `performance-tests/results`.
 
-> **Importante:** 250 usuários não significam 250 req/s. Os planos usam `Constant Throughput Timer` em requisições por minuto e threads suficientes para sustentar a vazão. O fluxo possui quatro requisições HTTP por compra.
+> **Observação:** 250 usuários não equivalem a 250 req/s. A vazão do teste é controlada pelo Constant Throughput Timer.
 
 ## Cenários automatizados
 
