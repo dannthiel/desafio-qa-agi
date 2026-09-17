@@ -24,6 +24,7 @@
         <selenium.version>4.49.0</selenium.version>
         <rest-assured.version>6.0.1</rest-assured.version>
         <allure.version>2.35.5</allure.version>
+        <allure.report.version>2.35.1</allure.report.version>
         <aspectj.version>1.9.25</aspectj.version>
         <surefire.version>3.6.0</surefire.version>
     </properties>
@@ -77,7 +78,7 @@
                     <artifactId>allure-maven</artifactId>
                     <version>3.1.0</version>
                     <configuration>
-                        <reportVersion>${allure.version}</reportVersion>
+                        <reportVersion>${allure.report.version}</reportVersion>
                     </configuration>
                 </plugin>
             </plugins>
